@@ -55,7 +55,7 @@ export default class SwapiService {
       rotationPeriod: planet.rotation_period,
       diameter: planet.diameter
     };
-  }
+  };
 
   _transformStarship = (starship) => {
     return {
@@ -69,7 +69,7 @@ export default class SwapiService {
       passengers: starship.passengers,
       cargoCapacity: starship.cargoCapacity
     }
-  }
+  };
 
   _transformPerson = (person) => {
     return {
