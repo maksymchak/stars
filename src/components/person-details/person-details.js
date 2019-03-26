@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import SwapiService from "../../services/swapi-service";
 import './person-details.css';
+import SwapiService from "../../services/swapi-service";
 
 export default class PersonDetails extends Component {
 
@@ -15,9 +15,15 @@ export default class PersonDetails extends Component {
     this.updatePerson();
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.personId !== prevProps.personId) {
+      this.updatePerson();
+    }
+  }
+
   updatePerson() {
     const { personId } = this.props;
-    if(!personId) {
+    if (!personId) {
       return;
     }
 
@@ -25,7 +31,7 @@ export default class PersonDetails extends Component {
       .getPerson(personId)
       .then((person) => {
         this.setState({ person });
-      })
+      });
   }
 
   render() {
@@ -44,7 +50,7 @@ export default class PersonDetails extends Component {
           alt="character"/>
 
         <div className="card-body">
-          <h4>{name} {this.props.personId}</h4>
+          <h4>{name}</h4>
           <ul className="list-group list-group-flush">
             <li className="list-group-item">
               <span className="term">Gender</span>
