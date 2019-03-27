@@ -12,6 +12,7 @@ export default class App extends Component {
   state = {
     showRandomPlanet: true,
     selectedPerson: null
+    hasError: false
   };
 
   toggleRandomPlanet = () => {
@@ -28,7 +29,15 @@ export default class App extends Component {
     });
   };
 
+  componentDidCatch() {
+    this.setState({hasError: true});
+  }
+
   render() {
+
+    if(this.state.hasError) {
+      return <ErrorIndicator />
+    }
 
     const planet = this.state.showRandomPlanet ?
       <RandomPlanet/> :
